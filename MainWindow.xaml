@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Works"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Сервисы" Height="450" Width="371.6">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="347"/>
+
     </Grid>
 </Window>
