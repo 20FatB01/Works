@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-namespace Works
+﻿namespace Works
 {
     public class Service
     {

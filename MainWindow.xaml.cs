@@ -64,6 +64,15 @@ namespace Works
             }
         }
 
+        private void JoinButton_Initialized(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if (button != null)
+            {
+                button.Uid = Convert.ToString(i);
+            }
+        }
+
         private void BRed_Click(object sender, RoutedEventArgs e)
         {
             Button BtnRed = (Button)sender;
@@ -118,9 +127,20 @@ namespace Works
 
         private void Button_Click(object sender, RoutedEventArgs e) => ShowEditPage();
 
+        private void Join_Click(object sender, RoutedEventArgs e) => ShowJoinPage((Button)sender);
+
         private void ShowEditPage(Service service = null)
         {
             new Edit(service).Show();
+            Hide();
+        }
+
+        private void ShowJoinPage(Button sender)
+        {
+            int id = int.Parse(sender.Uid);
+            List<Service> services = Database.GetServices();
+            Service service = services[id];
+            new Join(service).Show();
             Hide();
         }
     }

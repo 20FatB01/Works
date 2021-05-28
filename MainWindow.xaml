@@ -25,6 +25,7 @@
                                             <TextBlock Initialized="TextBlock_Initialized_1"/>
                                             <TextBlock Initialized="TextBlock_Initialized_2"/>
                                             <Button Name="BRed" Content="Редактировать" Initialized="BRed_Initialized" Click="BRed_Click"/>
+                                            <Button Name="JoinButton" Content="Записать пользователя" Initialized="JoinButton_Initialized" Click="Join_Click"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>

@@ -17,3 +17,5 @@ D:\Downloads\Works\obj\Debug\Works.exe
 D:\Downloads\Works\obj\Debug\Works.pdb
 D:\Downloads\Works\obj\Debug\Edit.g.cs
 D:\Downloads\Works\obj\Debug\Edit.baml
+D:\Downloads\Works\obj\Debug\Join.g.cs
+D:\Downloads\Works\obj\Debug\Join.baml

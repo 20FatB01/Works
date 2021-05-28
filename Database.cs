@@ -42,30 +42,50 @@ namespace Works
             DataTable table = SendQuery($"Select * from Service");
             foreach (DataRow row in table.Rows)
             {
-                int id = (int)row.ItemArray[0];
-                string title = row.ItemArray[1].ToString();
-                float cost = float.Parse(row.ItemArray[2].ToString());
-                int time = (int)row.ItemArray[3];
-                string desk = row.ItemArray[4].ToString();
-                float sale = float.Parse(row.ItemArray[5].ToString());
-                string path = row.ItemArray[6].ToString().Trim();
                 Service service = new Service
                 {
-                    Id = id,
-                    Title = title,
-                    Cost = cost,
-                    Time = time,
-                    Sale = sale,
-                    Description = desk,
-                    ImagePath = path
+                    Id = (int)row.ItemArray[0],
+                    Title = row.ItemArray[1].ToString(),
+                    Cost = float.Parse(row.ItemArray[2].ToString()),
+                    Time = (int)row.ItemArray[3],
+                    Sale = float.Parse(row.ItemArray[5].ToString()),
+                    Description = row.ItemArray[4].ToString(),
+                    ImagePath = row.ItemArray[6].ToString().Trim()
                 };
                 list.Add(service);
             }
             return list;
         }
 
+        public static List<User> GetUsers()
+        {
+            List<User> list = new List<User>();
+            DataTable table = SendQuery($"Select * from Client");
+            foreach (DataRow row in table.Rows)
+            {
+                User user = new User
+                {
+                    Id = (int)row.ItemArray[0],
+                    FirstName = row.ItemArray[1].ToString(),
+                    LastName = row.ItemArray[2].ToString(),
+                    Patronymic = row.ItemArray[3].ToString(),
+                    Birthday = DateTime.Parse(row.ItemArray[4].ToString()),
+                    RegistrationDate = DateTime.Parse(row.ItemArray[5].ToString()),
+                    Email = row.ItemArray[6].ToString(),
+                    Phone = row.ItemArray[7].ToString(),
+                    GenderCode = row.ItemArray[8].ToString(),
+                    PhotoPath = row.ItemArray[9].ToString(),
+                };
+                list.Add(user);
+            }
+            return list;
+        }
+
         public static void AddService(Service element)
             => SendQuery($"Insert into Service values {element}");
+
+        public static void AddJoining(User client, Service service, DateTime start, string comment)
+            => SendQuery($"Insert into ClientService values ({client.Id}, {service.Id}, '{start.ToString("yyyy-MM-dd HH:mm:ss.fff")}', '{comment}')");
 
         public static void UpdateService(Service element)
             => SendQuery($"Update Service set Title = '{element.Title}', Description = '{element.Description}', DurationInSeconds = {element.Time}, Discount = {$"{element.Sale}".Replace(',','.')}, MainImagePath = '{element.ImagePath}' where id = {element.Id}");
