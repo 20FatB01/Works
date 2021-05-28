@@ -10,25 +10,74 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Works
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для filter.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class filter : Window
     {
-        List<Service> Services;
-        public MainWindow()
+        private List<Service> Services;
+        private bool isFirstLoad = true;
+        public filter(List<Service> services, int selected_index = 0, string text1 = "", string text2 = "")
         {
+            Services = services;
             InitializeComponent();
-            Services = Database.GetServices();
             DGServises.ItemsSource = Services;
             DGServises.IsReadOnly = true;
+            sale.SelectedIndex = selected_index;
+            name.Text = text1;
+            desk.Text = text2;
+            isFirstLoad = false;
+            count.Content = $"Показано {Services.Count} из {Database.GetServices().Count} услуг";
         }
         int i = -1;
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!isFirstLoad)
+            {
+                UploadPage();
+            }
+        }
+
+        private void UploadPage()
+        {
+            Services = Database.GetServices();
+            switch (sale.SelectedIndex)
+            {
+                case 1:
+                    Services = Services.Where(x => x.Sale * 100 >= 0 && x.Sale * 100 < 5).ToList();
+                    break;
+                case 2:
+                    Services = Services.Where(x => x.Sale * 100 >= 5 && x.Sale * 100 < 15).ToList();
+                    break;
+                case 3:
+                    Services = Services.Where(x => x.Sale * 100 >= 15 && x.Sale * 100 < 30).ToList();
+                    break;
+                case 4:
+                    Services = Services.Where(x => x.Sale * 100 >= 30 && x.Sale * 100 < 70).ToList();
+                    break;
+                case 5:
+                    Services = Services.Where(x => x.Sale * 100 >= 70 && x.Sale * 100 < 100).ToList();
+                    break;
+            }
+
+            if (name.Text != "")
+                Services = Services.Where(x => x.Title == name.Text).ToList();
+
+            if (desk.Text != "")
+                Services = Services.Where(x => x.Description == desk.Text).ToList();
+
+            ShowPageWithServices();
+        }
+
+        private void ShowPageWithServices()
+        {
+            new filter(Services, sale.SelectedIndex, name.Text, desk.Text).Show();
+            Close();
+        }
 
         private void MediaElement_Initialized(object sender, EventArgs e)
         {
@@ -73,14 +122,6 @@ namespace Works
             }
         }
 
-        private void BRed_Click(object sender, RoutedEventArgs e)
-        {
-            Button BtnRed = (Button)sender;
-            int ind = Convert.ToInt32(BtnRed.Uid);
-            Service S = Services[ind];
-            ShowEditPage(S);
-        }
-
         private void StackPanel_Initialized(object sender, EventArgs e)
         {
             if (i < Services.Count)
@@ -100,10 +141,6 @@ namespace Works
             {
                 TextBlock TB = (TextBlock)sender;
                 Service S = Services[i];
-                if (S.Sale != 0)
-                {
-                    TB.TextDecorations.Add(new TextDecoration(TextDecorationLocation.Strikethrough, new Pen(BorderBrush = Brushes.Red, 1), 1, TextDecorationUnit.FontRecommended, TextDecorationUnit.FontRecommended));
-                }
                 TB.Text = $"Стоимость: {S.Cost}";
             }
         }
@@ -116,7 +153,7 @@ namespace Works
                 Service S = Services[i];
                 if (S.Sale != 0)
                 {
-                    TB.Text = $"Новая стоимость: {S.Cost * (1 - S.Sale)}";
+                    TB.Text = $"Скидка: {S.Sale*100}%";
                 }
                 else
                 {
@@ -125,35 +162,15 @@ namespace Works
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) => ShowEditPage();
-
-        private void Join_Click(object sender, RoutedEventArgs e) => ShowJoinPage((Button)sender);
-
-        private void ShowEditPage(Service service = null)
+        private void back_Click(object sender, RoutedEventArgs e)
         {
-            new Edit(service).Show();
-            Hide();
+            new MainWindow().Show();
+            Close();
         }
 
-        private void ShowJoinPage(Button sender)
+        private void name_LostFocus(object sender, RoutedEventArgs e)
         {
-            int id = int.Parse(sender.Uid);
-            List<Service> services = Database.GetServices();
-            Service service = services[id];
-            new Join(service).Show();
-            Hide();
-        }
-
-        private void sortings_Click(object sender, RoutedEventArgs e)
-        {
-            new Sortings(Database.GetServices()).Show();
-            Hide();
-        }
-
-        private void filter_Click(object sender, RoutedEventArgs e)
-        {
-            new filter(Database.GetServices()).Show();
-            Hide();
+            if (!isFirstLoad) { UploadPage(); }
         }
     }
 }

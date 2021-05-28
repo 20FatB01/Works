@@ -1,11 +1,11 @@
-﻿<Window x:Class="Works.MainWindow"
+﻿<Window x:Class="Works.Sortings"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Works"
         mc:Ignorable="d"
-        Title="Сервисы" Height="556" Width="602.6" WindowStartupLocation="CenterScreen">
+        Title="Сортировка по стоимости" Height="556" Width="602.6" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="134*"/>
@@ -25,8 +25,6 @@
                                             <TextBlock Initialized="TextBlock_Initialized"/>
                                             <TextBlock Initialized="TextBlock_Initialized_1"/>
                                             <TextBlock Initialized="TextBlock_Initialized_2"/>
-                                            <Button Name="BRed" Content="Редактировать" Initialized="BRed_Initialized" Click="BRed_Click"/>
-                                            <Button Name="JoinButton" Content="Записать пользователя" Initialized="JoinButton_Initialized" Click="Join_Click"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </DataTemplate>
@@ -36,9 +34,8 @@
                 </DataGrid>
             </StackPanel>
         </ScrollViewer>
-        <Button Content="Добавить услугу" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="114" Height="100" Click="Button_Click"/>
-        <Button x:Name="sortings" Content="Сортировки" HorizontalAlignment="Left" Margin="129,10,0,0" VerticalAlignment="Top" Width="114" Height="100" Grid.ColumnSpan="2" Click="sortings_Click"/>
-        <Button x:Name="filter" Content="Фильтрация &#xD;&#xA;и поиск" HorizontalAlignment="Left" Margin="114,10,0,0" VerticalAlignment="Top" Width="114" Height="100" Grid.Column="1" Click="filter_Click"/>
+        <Button x:Name="up" Content="Отсортировать &#xD;&#xA;по возрастанию" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="114" Height="100" Click="Button_Click"/>
+        <Button x:Name="down" Content="Отсортировать &#xD;&#xA;по убыванию" HorizontalAlignment="Left" Margin="129,10,0,0" VerticalAlignment="Top" Width="114" Height="100" Grid.ColumnSpan="2" Click="sortings_Click"/>
+        <Button x:Name="search" Content="Вернуться в меню" HorizontalAlignment="Left" Margin="114,10,0,0" VerticalAlignment="Top" Width="114" Height="100" Grid.Column="1" Click="search_Click"/>
     </Grid>
-
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Works"
         mc:Ignorable="d"
-        Title="Запись" Height="425.138" Width="416" ResizeMode="NoResize">
+        Title="Запись" Height="425.138" Width="416" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label x:Name="mainLabel" Content="Запись пользователя" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="46" Width="388" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="18"/>
         <Label Content="Длительность услуги" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" Height="46" Width="150" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>

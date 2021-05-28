@@ -62,12 +62,22 @@
     <Compile Include="Edit.xaml.cs">
       <DependentUpon>Edit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="filter.xaml.cs">
+      <DependentUpon>filter.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Join.xaml.cs">
       <DependentUpon>Join.xaml</DependentUpon>
     </Compile>
     <Compile Include="Service.cs" />
+    <Compile Include="Sortings.xaml.cs">
+      <DependentUpon>Sortings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <Page Include="Edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="filter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -87,6 +97,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Sortings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

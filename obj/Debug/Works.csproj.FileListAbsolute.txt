@@ -19,3 +19,7 @@ D:\Downloads\Works\obj\Debug\Edit.g.cs
 D:\Downloads\Works\obj\Debug\Edit.baml
 D:\Downloads\Works\obj\Debug\Join.g.cs
 D:\Downloads\Works\obj\Debug\Join.baml
+D:\Downloads\Works\obj\Debug\Sortings.g.cs
+D:\Downloads\Works\obj\Debug\Sortings.baml
+D:\Downloads\Works\obj\Debug\filter.g.cs
+D:\Downloads\Works\obj\Debug\filter.baml

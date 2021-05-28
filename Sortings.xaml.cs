@@ -10,25 +10,35 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Works
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для Sortings.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Sortings : Window
     {
-        List<Service> Services;
-        public MainWindow()
+        private List<Service> Services;
+        public Sortings(List<Service> services)
         {
             InitializeComponent();
-            Services = Database.GetServices();
+            Services = services;
             DGServises.ItemsSource = Services;
             DGServises.IsReadOnly = true;
         }
         int i = -1;
+        private void sortings_Click(object sender, RoutedEventArgs e)
+        {
+            new Sortings(Services.OrderByDescending(x => x.Cost * (1 - x.Sale)).ToList()).Show(); 
+            Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new Sortings(Services.OrderBy(x => x.Cost * (1 - x.Sale)).ToList()).Show();
+            Close();
+        }
 
         private void MediaElement_Initialized(object sender, EventArgs e)
         {
@@ -71,14 +81,6 @@ namespace Works
             {
                 button.Uid = Convert.ToString(i);
             }
-        }
-
-        private void BRed_Click(object sender, RoutedEventArgs e)
-        {
-            Button BtnRed = (Button)sender;
-            int ind = Convert.ToInt32(BtnRed.Uid);
-            Service S = Services[ind];
-            ShowEditPage(S);
         }
 
         private void StackPanel_Initialized(object sender, EventArgs e)
@@ -125,35 +127,10 @@ namespace Works
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) => ShowEditPage();
-
-        private void Join_Click(object sender, RoutedEventArgs e) => ShowJoinPage((Button)sender);
-
-        private void ShowEditPage(Service service = null)
+        private void search_Click(object sender, RoutedEventArgs e)
         {
-            new Edit(service).Show();
-            Hide();
-        }
-
-        private void ShowJoinPage(Button sender)
-        {
-            int id = int.Parse(sender.Uid);
-            List<Service> services = Database.GetServices();
-            Service service = services[id];
-            new Join(service).Show();
-            Hide();
-        }
-
-        private void sortings_Click(object sender, RoutedEventArgs e)
-        {
-            new Sortings(Database.GetServices()).Show();
-            Hide();
-        }
-
-        private void filter_Click(object sender, RoutedEventArgs e)
-        {
-            new filter(Database.GetServices()).Show();
-            Hide();
+            new MainWindow().Show();
+            Close();
         }
     }
 }
