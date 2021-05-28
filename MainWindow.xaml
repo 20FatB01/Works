@@ -34,6 +34,7 @@
                 </DataGrid>
             </StackPanel>
         </ScrollViewer>
+        <Button Content="Добавить услугу" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="114" Height="100" Click="Button_Click"/>
     </Grid>
 
 </Window>

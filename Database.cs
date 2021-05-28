@@ -46,6 +46,7 @@ namespace Works
                 string title = row.ItemArray[1].ToString();
                 float cost = float.Parse(row.ItemArray[2].ToString());
                 int time = (int)row.ItemArray[3];
+                string desk = row.ItemArray[4].ToString();
                 float sale = float.Parse(row.ItemArray[5].ToString());
                 string path = row.ItemArray[6].ToString().Trim();
                 Service service = new Service
@@ -55,6 +56,7 @@ namespace Works
                     Cost = cost,
                     Time = time,
                     Sale = sale,
+                    Description = desk,
                     ImagePath = path
                 };
                 list.Add(service);
@@ -62,10 +64,10 @@ namespace Works
             return list;
         }
 
-        //public static void AddObject(object element, DataType type)
-        //    => SendQuery($"Insert into dbo.{DataTypes[type]} values {element}");
+        public static void AddService(Service element)
+            => SendQuery($"Insert into Service values {element}");
 
-        //public static void DeleteObject(int id, DataType type)
-        //    => SendQuery($"Delete from dbo.{DataTypes[type]} where id = {id}");
+        public static void UpdateService(Service element)
+            => SendQuery($"Update Service set Title = '{element.Title}', Description = '{element.Description}', DurationInSeconds = {element.Time}, Discount = {$"{element.Sale}".Replace(',','.')}, MainImagePath = '{element.ImagePath}' where id = {element.Id}");
     }
 }

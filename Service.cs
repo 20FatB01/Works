@@ -9,5 +9,16 @@ namespace Works
         public int Time { get; set; }
         public string ImagePath { get; set; }
         public float Sale { get; set; }
+        public string Description { get; set; }
+
+        public Service()
+        {
+            Description = "";
+        }
+
+        public override string ToString()
+        {
+            return $"('{Title}', {Cost}, {Time}, '{Description}', {$"{Sale}".Replace(',','.')}, '{ImagePath}')";
+        }
     }
 }

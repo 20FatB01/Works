@@ -29,6 +29,7 @@ namespace Works
             DGServises.IsReadOnly = true;
         }
         int i = -1;
+
         private void MediaElement_Initialized(object sender, EventArgs e)
         {
             if (i < Services.Count)
@@ -38,6 +39,7 @@ namespace Works
                 Service S = Services[i];
                 Uri U = new Uri(AppDomain.CurrentDomain.BaseDirectory + S.ImagePath, UriKind.Relative);
                 ME.Source = U;
+                ME.LoadedBehavior = MediaState.Play;
                 //   i++;
             }
         }
@@ -67,8 +69,7 @@ namespace Works
             Button BtnRed = (Button)sender;
             int ind = Convert.ToInt32(BtnRed.Uid);
             Service S = Services[ind];
-            MessageBox.Show(S.Title);
-
+            ShowEditPage(S);
         }
 
         private void StackPanel_Initialized(object sender, EventArgs e)
@@ -113,6 +114,14 @@ namespace Works
                     TB.Text = "";
                 }
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e) => ShowEditPage();
+
+        private void ShowEditPage(Service service = null)
+        {
+            new Edit(service).Show();
+            Hide();
         }
     }
 }
