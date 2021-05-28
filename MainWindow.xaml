@@ -5,12 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Works"
         mc:Ignorable="d"
-        Title="Сервисы" Height="450" Width="371.6">
+        Title="Сервисы" Height="556" Width="602.6">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <DataGrid HorizontalAlignment="Left" Height="399" Margin="10,10,0,0" VerticalAlignment="Top" Width="347"/>
-
+        <Image HorizontalAlignment="Center" Height="100" Margin="17,10,7,0" VerticalAlignment="Top" Width="347" Source="school_logo.png"/>
+        <ScrollViewer x:Name="table" Margin="0,115,10,0" Grid.ColumnSpan="1">
+            <StackPanel>
+                <DataGrid Name="DGServises" AutoGenerateColumns="False" HorizontalAlignment="Left" IsReadOnly="False" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Initialized="StackPanel_Initialized">
+                                        <MediaElement x:Name="media" Width="50" Height="50" Initialized="MediaElement_Initialized"/>
+                                        <StackPanel>
+                                            <TextBlock Initialized="TextBlock_Initialized"/>
+                                            <TextBlock Initialized="TextBlock_Initialized_1"/>
+                                            <TextBlock Initialized="TextBlock_Initialized_2"/>
+                                            <Button Name="BRed" Content="Редактировать" Initialized="BRed_Initialized" Click="BRed_Click"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
+
 </Window>

@@ -11,7 +11,7 @@ namespace Works
     public static class Database
     {
         private static SqlConnection sqlConnection =
-            new SqlConnection(@"Provider=Microsoft.ACE.OLEDB.12.0; Persist Security Info=False; Data Source=|DataDirectory|\dbo.mdb; ");
+            new SqlConnection(@"Data Source=ngknn.ru;Initial Catalog=Cirkel;User ID=32В;Password=444444");
 
         public static DataTable SendQuery(string query)
         {
@@ -39,18 +39,25 @@ namespace Works
         public static List<Service> GetServices()
         {
             List<Service> list = new List<Service>();
-            DataTable table = SendQuery($"Select * from dbo.Service");
+            DataTable table = SendQuery($"Select * from Service");
             foreach (DataRow row in table.Rows)
             {
-                list.Append(new Service
+                int id = (int)row.ItemArray[0];
+                string title = row.ItemArray[1].ToString();
+                float cost = float.Parse(row.ItemArray[2].ToString());
+                int time = (int)row.ItemArray[3];
+                float sale = float.Parse(row.ItemArray[5].ToString());
+                string path = row.ItemArray[6].ToString().Trim();
+                Service service = new Service
                 {
-                    Id = (int)row.ItemArray[0],
-                    Title = row.ItemArray[1].ToString(),
-                    Cost = (int)row.ItemArray[2],
-                    Time = (int)row.ItemArray[3],
-                    Sale = (float)row.ItemArray[5],
-                    Image = Image.FromFile(row.ItemArray[6].ToString()),
-                });
+                    Id = id,
+                    Title = title,
+                    Cost = cost,
+                    Time = time,
+                    Sale = sale,
+                    ImagePath = path
+                };
+                list.Add(service);
             }
             return list;
         }

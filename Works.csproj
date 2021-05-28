@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>school_logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -104,6 +107,25 @@
     <PackageReference Include="System.Drawing.Common">
       <Version>5.0.2</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\for company.jpg" />
+    <Resource Include="Images\online lessons.jpg" />
+    <Resource Include="Images\Английский язык.jpg" />
+    <Resource Include="Images\Испанский язык.jpg" />
+    <Resource Include="Images\Итальянский язык.jpg" />
+    <Resource Include="Images\киноклуб.jpg" />
+    <Resource Include="Images\Китайский язык.jpg" />
+    <Resource Include="Images\Немецкий язык.png" />
+    <Resource Include="Images\Подготовка к экзамену ACT.png" />
+    <Resource Include="Images\Подготовка к экзамену GMAT.png" />
+    <Resource Include="Images\Подготовка к экзамену GRE.jpeg" />
+    <Resource Include="Images\Подготовка к экзамену IELTS.jpg" />
+    <Resource Include="Images\Подготовка к экзамену SAT.png" />
+    <Resource Include="Images\Подготовка к экзамену TOEFL.jpg" />
+    <Resource Include="Images\Португальский язык.jpg" />
+    <Resource Include="Images\Французский язык.jpg" />
+    <Resource Include="Images\Японский язык.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
